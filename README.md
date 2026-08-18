@@ -1,8 +1,8 @@
 # Harsh Shah — Portfolio
 
-**Live Demo:** [harshshah931.github.io/Portfolio](https://harshshah931.github.io/Portfolio/)
+**Live site:** [harshshah931.github.io/Portfolio](https://harshshah931.github.io/Portfolio/)
 
-A personal portfolio showcasing my work as an **AI/ML Engineer & Software Developer**, including projects, technical skills, achievements, and experience building modern software and intelligent systems.
+A personal portfolio built to showcase my work as an AI/ML Engineer & Software Developer — featuring an interactive 3D hero scene, animated project case studies, and a live achievements timeline.
 
 ![Status](https://img.shields.io/badge/status-live-brightgreen)
 ![Built with React](https://img.shields.io/badge/built%20with-React-61DAFB?logo=react&logoColor=white)
@@ -13,12 +13,11 @@ A personal portfolio showcasing my work as an **AI/ML Engineer & Software Develo
 
 ## ✨ Features
 
-- **Interactive 3D hero** — a mouse-reactive 3D scene built with React Three Fiber, ambient particles, and glowing visual accents
-- **Cinematic animations** — smooth scroll and scroll-triggered animations powered by Framer Motion and Lenis
-- **Project case studies** — detailed project cards with technical highlights, technology stacks, GitHub links, and live demos where available
-- **Skills & technologies** — organized overview of programming languages, AI/ML, web development, databases, and development tools
-- **Honors & achievements** — timeline showcasing certifications, leadership roles, milestones, and other achievements
-- **Responsive design** — modern dark, glass-morphic interface optimized for desktop and mobile
+- **Interactive 3D hero** — a distorted, mouse-reactive core built with React Three Fiber, with ambient particles and glowing accents
+- **Cinematic animations** — scroll-triggered reveals and smooth page transitions powered by Framer Motion and Lenis
+- **Project case studies** — click any project card to open a detailed modal with a full write-up, key engineering highlights, tech stack, and links to the live demo / GitHub repo
+- **Achievements timeline** — a running record of certifications, leadership roles, and milestones
+- **Fully responsive** — dark, glass-morphic design that adapts cleanly from mobile to desktop
 
 ## 🛠️ Tech Stack
 
@@ -27,55 +26,32 @@ A personal portfolio showcasing my work as an **AI/ML Engineer & Software Develo
 | Framework | React 19, Vite, TypeScript |
 | Styling | Tailwind CSS v4 |
 | 3D / Graphics | Three.js, React Three Fiber, @react-three/drei |
-| Animation | Framer Motion, Lenis |
+| Animation | Framer Motion, Lenis (smooth scroll) |
 | Icons | React Icons |
+| Deployment | GitHub Actions → GitHub Pages |
 
 ## 📂 Project Structure
 
-```text
+```
 src/
 ├── assets/          # Images and static media
-├── components/      # Reusable UI components
-├── data/            # Centralized portfolio content
+├── components/      # Reusable UI components (Navbar, ProjectCard, ProjectModal)
+├── data/            # Centralized content (profile, projects, skills, achievements)
 ├── hooks/           # Custom React hooks
-├── sections/        # Hero, About, Projects, Skills, Achievements, Contact
+├── sections/        # Page sections (Hero, About, Projects, Skills, Achievements, Contact)
 └── three/           # React Three Fiber scene components
 ```
 
-## 🌐 Live Demo
-
-Visit the deployed portfolio:
-
-**[harshshah931.github.io/Portfolio](https://harshshah931.github.io/Portfolio/)**
-
----
-
 ## 🚀 Running Locally
-
-### 1. Clone the repository
 
 ```bash
 git clone https://github.com/Harshshah931/Portfolio.git
 cd Portfolio
-```
-
-### 2. Install dependencies
-
-```bash
 npm install
-```
-
-### 3. Start the development server
-
-```bash
 npm run dev
 ```
 
-The site will be available at:
-
-```text
-http://localhost:5173
-```
+The site will be available at `http://localhost:5173`.
 
 ### Build for production
 
@@ -83,9 +59,7 @@ http://localhost:5173
 npm run build
 ```
 
-The production build is generated in the `dist/` folder.
-
----
+Output is generated in the `dist/` folder.
 
 ## 📬 Contact
 
