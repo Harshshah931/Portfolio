@@ -32,33 +32,7 @@ export default function CaseStudy() {
     };
   }, [lightboxOpen, images.length]);
 
-useEffect(() => {
-  window.scrollTo(0, 0);
 
-  const images = project?.images ?? [];
-  if (images.length === 0) return;
-
-  let loadedCount = 0;
-  const handleLoad = () => {
-    loadedCount++;
-    window.scrollTo(0, 0);
-  };
-
-  const imgElements = images.map((src) => {
-    const img = new Image();
-    img.src = src;
-    img.onload = handleLoad;
-    img.onerror = handleLoad;
-    return img;
-  });
-
-  return () => {
-    imgElements.forEach((img) => {
-      img.onload = null;
-      img.onerror = null;
-    });
-  };
-}, [slug, project]);
 
   function handleBack() {
     navigate('/');
