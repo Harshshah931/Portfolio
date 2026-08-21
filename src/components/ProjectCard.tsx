@@ -1,14 +1,15 @@
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import type { Project } from '../data/content';
 import { FiArrowUpRight, FiGithub, FiMaximize2 } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 interface ProjectCardProps {
   project: Project;
   index: number;
-  onSelect?: () => void;
 }
 
-export default function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
+export default function ProjectCard({ project, index }: ProjectCardProps) {
+  const navigate = useNavigate();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotateX = useTransform(y, [-50, 50], [6, -6]);
@@ -31,6 +32,17 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
     e.currentTarget.style.removeProperty('--y');
   }
 
+  function handleCardClick() {
+    navigate(`/projects/${project.slug}`);
+  }
+
+  function handleCardKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      navigate(`/projects/${project.slug}`);
+    }
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -38,16 +50,18 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.6, delay: index * 0.08 }}
       style={{ perspective: 1000 }}
-      onClick={onSelect}
       className={project.featured ? 'md:col-span-2' : ''}
     >
       <motion.div
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        onClick={handleCardClick}
+        onKeyDown={handleCardKeyDown}
+        role="link"
+        tabIndex={0}
         style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-        className="relative glass rounded-3xl p-7 sm:p-8 h-full flex flex-col justify-between group cursor-pointer overflow-hidden border border-white/10 hover:border-[var(--color-primary)]/50 transition-colors duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
+        className="relative glass rounded-3xl p-7 sm:p-8 h-full flex flex-col justify-between group cursor-pointer overflow-hidden border border-white/10 hover:border-[var(--color-primary)]/50 transition-colors duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.4)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
       >
-        {/* Dynamic Laser Border Sweep on Hover */}
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{
@@ -56,7 +70,6 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
           }}
         />
 
-        {/* Top Info */}
         <div style={{ transform: 'translateZ(25px)' }}>
           <div className="flex items-start justify-between gap-4 mb-4">
             <div className="space-y-1">
@@ -70,7 +83,6 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
               </h3>
             </div>
 
-            {/* External Links */}
             <div className="flex items-center gap-2 shrink-0" onClick={(e) => e.stopPropagation()}>
               {project.repo && (
                 <a
@@ -94,14 +106,12 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
                   <FiArrowUpRight size={15} />
                 </a>
               )}
-              <button
-                type="button"
-                onClick={onSelect}
-                aria-label="Expand case study"
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-[var(--color-primary)]/20 hover:bg-[var(--color-primary)] text-[var(--color-primary-soft)] hover:text-white transition-all group/btn"
+              <span
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-[var(--color-primary)]/20 group-hover:bg-[var(--color-primary)] text-[var(--color-primary-soft)] group-hover:text-white transition-all"
+                aria-hidden="true"
               >
-                <FiMaximize2 size={13} className="group-hover/btn:scale-110 transition-transform" />
-              </button>
+                <FiMaximize2 size={13} />
+              </span>
             </div>
           </div>
 
@@ -110,7 +120,6 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
           </p>
         </div>
 
-        {/* Bottom Tags & View Case Study Cue */}
         <div style={{ transform: 'translateZ(20px)' }} className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/5">
           <div className="flex flex-wrap gap-1.5">
             {project.tags.map((tag) => (

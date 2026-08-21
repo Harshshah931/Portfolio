@@ -1,14 +1,10 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { projects } from '../data/content';
-import type { Project } from '../data/content';
 import ProjectCard from '../components/ProjectCard';
-import ProjectModal from '../components/ProjectModal';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function Projects() {
   const { ref, visible } = useScrollReveal<HTMLDivElement>();
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <section id="projects" className="relative py-32 px-6 sm:px-12 lg:px-20">
@@ -36,27 +32,16 @@ export default function Projects() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-sm sm:text-base text-[var(--color-text-dim)] font-light mt-3 max-w-xl"
           >
-            Click on any project card to inspect its architectural case study, technical highlights, and source code.
+            Click on any project card to open its full case study, technical highlights, and source code.
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {projects.map((project, i) => (
-            <ProjectCard
-              key={project.title}
-              project={project}
-              index={i}
-              onSelect={() => setSelectedProject(project)}
-            />
+            <ProjectCard key={project.title} project={project} index={i} />
           ))}
         </div>
       </div>
-
-      {/* Project Case Study Modal */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
     </section>
   );
 }
