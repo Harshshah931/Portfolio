@@ -114,12 +114,14 @@ export default function Hero() {
             className="flex flex-wrap items-center gap-4"
           >
             <a
-              href="#projects"
-              className="relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[var(--color-primary)] hover:bg-[#6844fc] text-white font-medium text-sm tracking-wide transition-all duration-300 shadow-[0_0_30px_rgba(124,92,255,0.35)] hover:shadow-[0_0_40px_rgba(124,92,255,0.55)] hover:scale-[1.03] group overflow-hidden laser-sweep"
-            >
-              <span>Explore My Work</span>
-              <FiArrowUpRight className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" size={16} />
-            </a>
+<button
+  type="button"
+  onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+  className="relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[var(--color-primary)] hover:bg-[#6844fc] text-white font-medium text-sm tracking-wide transition-all duration-300 shadow-[0_0_30px_rgba(124,92,255,0.35)] hover:shadow-[0_0_40px_rgba(124,92,255,0.55)] hover:scale-[1.03] group overflow-hidden laser-sweep cursor-pointer"
+>
+  <span>Explore My Work</span>
+  <FiArrowUpRight className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" size={16} />
+</button>
 
             <a
               href={`mailto:${profile.email}`}
