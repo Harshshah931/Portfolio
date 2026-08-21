@@ -32,9 +32,12 @@ export default function CaseStudy() {
     };
   }, [lightboxOpen, images.length]);
 
-  useEffect(() => {
+ useEffect(() => {
+  const timer = setTimeout(() => {
     window.scrollTo(0, 0);
-  }, [slug]);
+  }, 0);
+  return () => clearTimeout(timer);
+}, [slug]);
 
   function handleBack() {
     navigate('/');
