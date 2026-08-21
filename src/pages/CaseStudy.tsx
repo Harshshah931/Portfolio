@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { projects } from '../data/content';
 import { FiArrowLeft, FiArrowUpRight, FiGithub, FiChevronLeft, FiChevronRight, FiX, FiZoomIn } from 'react-icons/fi';
+import { useLenis } from '../LenisContext';
 
 export default function CaseStudy() {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const lenis = useLenis();
   const project = projects.find((p) => p.slug === slug);
   const [activeImage, setActiveImage] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -32,7 +34,13 @@ export default function CaseStudy() {
     };
   }, [lightboxOpen, images.length]);
 
-
+  useEffect(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [slug, lenis]);
 
   function handleBack() {
     navigate('/');
